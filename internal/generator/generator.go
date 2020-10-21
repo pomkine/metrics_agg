@@ -46,7 +46,8 @@ func (g *Generator) Start() {
 					g.onNewData(source.GetData())
 				}
 			case <-finish.C:
-				log.Println("finished")
+				log.Println("generator finished")
+				g.finished <- struct{}{}
 				return
 			case <-g.stopSig:
 				log.Println("generator stopped")
